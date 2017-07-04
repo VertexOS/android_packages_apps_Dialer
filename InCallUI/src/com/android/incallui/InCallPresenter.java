@@ -334,6 +334,8 @@ public class InCallPresenter implements CallList.Listener,
         Preconditions.checkNotNull(context);
         mContext = context;
 
+        QtiCallUtils.startCarrierConfigCache(context);
+
         mContactInfoCache = contactInfoCache;
 
         mInCallVibrationHandler = new InCallVibrationHandler(context);
@@ -420,6 +422,7 @@ public class InCallPresenter implements CallList.Listener,
         removeDetailsListener(SessionModificationCauseNotifier.getInstance());
         CallList.getInstance().removeListener(CallSubstateNotifier.getInstance());
         CallList.getInstance().removeListener(SessionModificationCauseNotifier.getInstance());
+        QtiCallUtils.clearCarrierConfigCache();
     }
 
     private void attemptFinishActivity() {
